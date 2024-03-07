@@ -226,6 +226,7 @@ app.post("/login", async (req, res, next) => {
 });
 
 app.post("/upload", (req, res) => {
+  console.log(req.body);
   upload(req, res, (err) => {
     if (err) {
       req.status(400).send(err);
@@ -234,7 +235,7 @@ app.post("/upload", (req, res) => {
       const newMovie = new movie({
         name: req.body.name,
         releaseDate: req.body.releaseDate,
-        image: `/uploads/${req.file.filename}`,
+        image: req.body.image,
         description: req.body.description,
         genre: req.body.genre,
         censor: req.body.censor,
@@ -242,7 +243,9 @@ app.post("/upload", (req, res) => {
       newMovie
         .save()
 
-        .then(() => res.status(200).send("upload sucess"))
+        .then(() => {
+          console.log(req.body);
+          res.status(200).send("upload sucess")})
         .catch((err) => res.status(400).send(err));
     }
   });

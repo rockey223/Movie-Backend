@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/MovieTicket",{
+
+
+mongoose.connect("mongodb+srv://rockeym50:maharjan1@mongodb.mpm0nj9.mongodb.net/?retryWrites=true&w=majority&appName=mongodb",{
   useNewUrlParser: true,
   useUnifiedTopology: true,
   
