@@ -3,11 +3,12 @@ const cors = require("cors");
 const multer = require("multer");
 const fs = require("fs");
 
-require("./Db/connection");
-const movie = require("./models/movie");
-const User = require("./models/user");
-const Seat = require("./models/seat");
-const UserSeat = require("./models/UserSeat");
+const serverless = require('serverless-http')
+require("../src/Db/connection");
+const movie = require("../src/models/movie");
+const User = require("../src/models/user");
+const Seat = require("../src/models/seat");
+const UserSeat = require("../src/models/UserSeat");
 const app = express();
 const port = process.env.PORT || 8000;
 app.use(cors());
@@ -272,3 +273,5 @@ app.get("/.netlify/functions/user", async (req, res) => {
 app.listen(port, () => {
   console.log(`connected to ${port}`);
 });
+
+module.exports.handler =serverless(app);
